@@ -11,7 +11,7 @@ int main(int argc, char* argv[])
 		printf("Please enter the number of nucleotides as a command line argument. \n");
 		return 1;
 	}
-	
+
 	int sequenceLength = atoi(argv[1]);
 
 	const char nucleotides[] = {'A', 'T', 'G', 'C'};
