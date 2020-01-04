@@ -21,6 +21,51 @@ char* DNA_to_RNA(int lengthOfSequence, char* DNA_sequence){
 
 char *RNA_to_Amino_Acid(int lengthOfSequence, char * RNA_sequence){
 	char *aminoAcidSequence = malloc(lengthOfSequence * sizeof(char) + 1);
+	FILE *fp = fopen("aminoAcidSequence.txt", "w");
+	strcpy(aminoAcidSequence, RNA_sequence);
+	for (int i = 0; i < lengthOfSequence; i += 3)
+	{
+		if (aminoAcidSequence[i] == 'U')
+		{
+			if (aminoAcidSequence[i + 1] == 'U')
+			{
+				if (aminoAcidSequence[i + 2] == 'U' || aminoAcidSequence[i + 2] == 'C')
+				{
+					fprintf(fp, "Phe ");
+				}
+				else fprintf(fp, "Leu ");	
+			}
+			else if (aminoAcidSequence[i + 1] == 'C')
+			{
+				fprintf(fp, "Ser ");
+			}		
+			else if (aminoAcidSequence[i + 1] == 'A')
+			{
+				if (aminoAcidSequence[i + 2] == 'U' || aminoAcidSequence[i + 2] == 'C')
+				{
+					fprintf(fp, "Tyr ");
+				}
+				else fprintf(fp, "STOP");
+			}
+			else if (aminoAcidSequence[i + 1] == 'G')
+			{
+				if (aminoAcidSequence[i + 2] == 'U' || aminoAcidSequence[i + 2] == 'C')
+				{
+					fprintf(fp, "Cys ");
+				}
+				else if (aminoAcidSequence[i + 2] == 'A')
+				{
+					fprintf(fp, "STOP");
+				}
+				else if (aminoAcidSequence[i + 2] == 'G')
+				{
+					fprintf(fp, "Trp ");
+				}
+			}			
+		}
+	}
+
+	fclose(fp);
 	strcpy(aminoAcidSequence, "hello");
 	return aminoAcidSequence;
 }
