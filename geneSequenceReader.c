@@ -23,6 +23,7 @@ char *RNA_to_Amino_Acid(int lengthOfSequence, char * RNA_sequence){
 	char *aminoAcidSequence = malloc(lengthOfSequence * sizeof(char) + 1);
 	FILE *fp = fopen("aminoAcidSequence.txt", "w");
 	strcpy(aminoAcidSequence, RNA_sequence);
+	
 	for (int i = 0; i < lengthOfSequence; i += 3)
 	{
 		if (aminoAcidSequence[i] == 'U')
