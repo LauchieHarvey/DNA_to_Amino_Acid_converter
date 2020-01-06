@@ -55,7 +55,7 @@ void RNA_to_Amino_Acid(int lengthOfSequence, char * RNA_sequence){
 
 	for (int i = 0; i < lengthOfSequence; i += 3)
 	{
-		fprintf(fp, returnAminoAcid(RNA_integer_Sequence[i], RNA_integer_Sequence[i + 1], RNA_integer_Sequence[i + 2]));
+		fprintf(fp, "%s ", returnAminoAcid(RNA_integer_Sequence[i], RNA_integer_Sequence[i + 1], RNA_integer_Sequence[i + 2]));
 	}
 
 	fclose(fp);
@@ -83,7 +83,7 @@ int main(int argc, char* argv[]){
 	//variable not needed as of now, will be needed if you read the file in future
 	//	free(aminoAcidSequence); <-- add this in at the end also :)
 
-	RNA_to_Amino_Acid(lengthOfSequence, RNA_sequence);
+	RNA_to_Amino_Acid(lengthOfSequence, RNA_sequence); // PRINTS TO THE .txt FILE!!!
 
 	free(DNA_sequence);
 	free(RNA_sequence);	
