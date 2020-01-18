@@ -49,6 +49,7 @@ int *RNA_to_RNA_integer_Sequence(int lengthOfSequence, char *RNA_sequence){
 }
 
 void RNA_to_Amino_Acid(int lengthOfSequence, char * RNA_sequence){
+	// There is no variable storing the amino acid string. It just gets printed straight to the .txt file for now.
 	FILE *fp = fopen("aminoAcidSequence.txt", "w");
 
 	int *RNA_integer_Sequence = RNA_to_RNA_integer_Sequence(lengthOfSequence, RNA_sequence);
@@ -80,11 +81,7 @@ int main(int argc, char* argv[]){
 
 	printf("RNA: %s \n", RNA_sequence);
 
-	//char *aminoAcidSequence = malloc(lengthOfSequence * sizeof(char) + 1); 
-	//variable not needed as of now, will be needed if you read the file in future
-	//	free(aminoAcidSequence); <-- add this in at the end also :)
-
-	RNA_to_Amino_Acid(lengthOfSequence, RNA_sequence); // PRINTS TO THE .txt FILE!!!
+	RNA_to_Amino_Acid(lengthOfSequence, RNA_sequence); // CONVERTS TO AMINO ACID && PRINTS AMINO ACIDS TO THE .txt FILE!!!
 
 	free(DNA_sequence);
 	free(RNA_sequence);	
