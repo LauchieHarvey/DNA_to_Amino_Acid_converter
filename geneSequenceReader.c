@@ -4,9 +4,9 @@
 
 char* DNA_to_RNA(int lengthOfSequence, char* DNA_sequence){
 	char *RNA_sequence = malloc(strlen(DNA_sequence) * sizeof(char) + 1);
-	strcpy(RNA_sequence, DNA_sequence);
 	if (!RNA_sequence) {exit(1);}
-
+	strcpy(RNA_sequence, DNA_sequence);
+	
 	for (int i = 0; i < lengthOfSequence; i++)
 	{
 		if(RNA_sequence[i] == 'T') {RNA_sequence[i] = 'U';}
@@ -29,6 +29,7 @@ int *RNA_to_RNA_integer_Sequence(int lengthOfSequence, char *RNA_sequence){
 	int *RNA_integer_Sequence = malloc(lengthOfSequence * sizeof(int));
 	if(!RNA_integer_Sequence) {exit(1);}
 
+	//Each Nucleotide has been assigned an integer value. This allows for efficient sorting through a 3D array.
 	for (int i = 0; i < lengthOfSequence; i++)
 	{
 		if (RNA_sequence[i] == 'U')
@@ -43,6 +44,8 @@ int *RNA_to_RNA_integer_Sequence(int lengthOfSequence, char *RNA_sequence){
 		}else if (RNA_sequence[i] == 'G')
 		{
 			RNA_integer_Sequence[i] = 3;
+		}else{
+			RNA_integer_Sequence[i] = -1;
 		}
 	}
 	return RNA_integer_Sequence;
@@ -56,9 +59,14 @@ void RNA_to_Amino_Acid(int lengthOfSequence, char * RNA_sequence){
 
 	for (int i = 0; i < lengthOfSequence; i += 3)
 	{
-		fprintf(fp, "%s ", returnAminoAcid(RNA_integer_Sequence[i], RNA_integer_Sequence[i + 1], RNA_integer_Sequence[i + 2]));
+		if(RNA_integer_Sequence[i])
+		{
+			fprintf(fp, "%s ", returnAminoAcid(RNA_integer_Sequence[i], RNA_integer_Sequence[i + 1], RNA_integer_Sequence[i + 2]));
+		}else 
+		{
+			fprintf(fp, "%s", "000"); //Indicated that a letter that isn't T, C, A or G was inputted.
+		}
 	}
-
 	fclose(fp);
 }
 
