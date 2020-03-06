@@ -18,9 +18,7 @@ int main(int argc, char* argv[])
 
 	for (int i = 0; i < sequenceLength; i++)
 	{
-		random = rand() % 4;
-		char thisNucleotide = nucleotides[random];
-		printf("%c", thisNucleotide);
+		printf("%c", nucleotides[rand() % 4]);
 	}
 	printf("\n");
 }
