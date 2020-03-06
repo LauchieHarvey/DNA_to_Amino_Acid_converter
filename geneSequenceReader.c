@@ -85,7 +85,7 @@ int main(int argc, char* argv[]){
 
 	char *RNA_sequence = malloc(lengthOfSequence * sizeof(char) + 1);
 	if(!RNA_sequence) {return 1;}
-	strcpy(RNA_sequence, DNAtoRNA(lengthOfSequence, DNA_sequence));
+	strcpy(RNA_sequence, DNA_to_RNA(lengthOfSequence, DNA_sequence));
 
 	printf("RNA: %s \n", RNA_sequence);
 
