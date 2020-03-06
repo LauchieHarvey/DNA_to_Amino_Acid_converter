@@ -14,15 +14,15 @@ char* DNA_to_RNA(int lengthOfSequence, char* DNA_sequence){
 	return RNA_sequence;
 }
 
-char *returnAminoAcid(int firstNucleotideIndex, int secondNucletideIndex, int thirdNucleotideIndex){
-	char *aminoAcidArray[4][4][4] = {
+char *return_Amino_Acid(int first_Nucleotide_Index, int second_Nucletide_Index, int third_Nucleotide_Index){
+	char *amino_Acid_Array[4][4][4] = {
 		{{"Phe", "Phe", "Leu", "Leu"}, {"Ser", "Ser", "Ser", "Ser"}, {"Tyr", "Tyr", "Stop", "Stop"}, {"Cys", "Cys", "Stop", "Trp"}},
 		{{"Leu", "Leu", "Leu", "Leu"}, {"Pro", "Pro", "Pro", "Pro"}, {"His", "His", "Gln", "Gln"}, {"Arg", "Arg", "Arg", "Arg"}},
 		{{"Ile", "Ile", "Ile", "Met"}, {"Thr", "Thr", "Thr", "Thr"}, {"Asn", "Asn", "Lys", "Lys"}, {"Ser", "Ser", "Arg", "Arg"}},
 		{{"Val", "Val", "Val", "Val"}, {"Ala", "Ala", "Ala", "Ala"}, {"Asp", "Asp", "Glu", "Glu"}, {"Gly", "Gly", "Gly", "Gly"}},
 	};
 
-	return aminoAcidArray[firstNucleotideIndex][secondNucletideIndex][thirdNucleotideIndex];
+	return amino_Acid_Array[first_Nucleotide_Index][second_Nucletide_Index][third_Nucleotide_Index];
 }
 
 int *RNA_to_RNA_integer_Sequence(int lengthOfSequence, char *RNA_sequence){
@@ -61,7 +61,7 @@ void RNA_to_Amino_Acid(int lengthOfSequence, char * RNA_sequence){
 	{
 		if(RNA_integer_Sequence[i])
 		{
-			fprintf(fp, "%s ", returnAminoAcid(RNA_integer_Sequence[i], RNA_integer_Sequence[i + 1], RNA_integer_Sequence[i + 2]));
+			fprintf(fp, "%s ", return_Amino_Acid(RNA_integer_Sequence[i], RNA_integer_Sequence[i + 1], RNA_integer_Sequence[i + 2]));
 		}else 
 		{
 			fprintf(fp, "%s", "000"); //Indicated that a letter that isn't T, C, A or G was inputted.
@@ -85,11 +85,11 @@ int main(int argc, char* argv[]){
 
 	char *RNA_sequence = malloc(lengthOfSequence * sizeof(char) + 1);
 	if(!RNA_sequence) {return 1;}
-	strcpy(RNA_sequence, DNA_to_RNA(lengthOfSequence, DNA_sequence));
+	strcpy(RNA_sequence, DNAtoRNA(lengthOfSequence, DNA_sequence));
 
 	printf("RNA: %s \n", RNA_sequence);
 
-	RNA_to_Amino_Acid(lengthOfSequence, RNA_sequence); // CONVERTS TO AMINO ACID && PRINTS AMINO ACIDS TO THE .txt FILE!!!
+	RNA_to_Amino_Acid(lengthOfSequence, RNA_sequence); // converts to amino acid && prints amino acids to the .txt file
 
 	free(DNA_sequence);
 	free(RNA_sequence);	
